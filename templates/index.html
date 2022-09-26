@@ -1,0 +1,346 @@
+{% extends "material/base.html" %}
+{% block content %}
+<div class="showcase container purple lighten-3">
+    <div class="row">
+        <div class="col 12 m10 offset-ml center">
+            <h2> Mushrooms Edibility Predictor </h2>
+            <p>Machine Learning Web App</p>
+            <a href="{{url_for('index')}}" class="btn btn-small purple white-text waves-effect waves-dark">Reset</a>
+            <a href="{{url_for('preview')}}" class="btn btn-small white purple-text waves-effect waves-dark">View Dataset</a>
+        </div>
+
+                </div>
+                <div class="card-image waves-effect waves-block waves-light">
+
+                      {% if result_prediction == [1] %}
+                        <img src="static/Poisonous Mushroom.jpg" width="1000px" height="500px">
+                        <p> Your Mushroom is Poisonous</p>
+
+                      {% elif result_prediction == [0]  %}
+                        <img src="static/Edible Mushroom.jpg" width="1000px" height="500px">
+                        <p> Your Mushroom is Edible</p>
+
+                       {% else %}
+                         <p></p>
+
+
+                       {% endif%}
+                </div>
+</div>
+
+
+<section class="section section-signup">
+        <div class="container">
+          <div class="row">
+            <p> Select all Criteria</p>
+
+                <form action="{{ url_for('analyse')}}" method="POST">
+                  <div class="col s12 m4">
+                  <div class="card-panel grey lighten-4 grey-text text-darken-4 z-depth-0">
+                  <div class="input-field">
+                    <select id="role" name="cap_shape">
+                      <option value="" disabled selected>Select Cap Shape</option>
+                      <option value="0.">Bell</option>
+                        <option value="0.2">Conical</option>
+                        <option value="1.">Convex</option>
+                        <option value="0.6">Knobbed</option>
+                        <option value="0.8">Sunken</option>
+                    </select>
+                    <label for="role">Select Cap Shape</label>
+                  </div>
+
+                  <div class="input-field">
+                    <select id="rol" name="cap_surface">
+                      <option value="" disabled selected>Select Cap Surface</option>
+                      <option value="0.">fibrous</option>
+                        <option value="0.33333333">Grooves</option>
+                        <option value="1.">Scaly</option>
+                        <option value="0.66666667">Smooth</option>
+                    </select>
+                    <label for="rol">Select Cap Surface</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="ro" name="cap_color">
+                      <option value="" disabled selected>Select Cap Color</option>
+                      <option value="0.44444444">Brown</option>
+                        <option value="0.">Buff</option>
+                        <option value="0.11111111">Cinnamon</option>
+                        <option value="0.33333333">Gray</option>
+                        <option value="0.66666667">Green</option>
+                        <option value="0.55555556">Pink</option>
+                        <option value="0.77777778">Purple</option>
+                        <option value="0.22222222">Red</option>
+                        <option value="0.88888889">White</option>
+                        <option value="1.">Yellow</option>
+                    </select>
+                    <label for="ro">Select Cap Color</label>
+                  </div>
+
+                  <div class="input-field">
+                    <select id="r" name="bruises">
+                      <option value="" disabled selected>Select Bruises</option>
+                      <option value="1.">Yes</option>
+                        <option value="0.">No</option>
+                    </select>
+                    <label for="r">Select Bruises</label>
+                  </div>
+                    <div class="input-field">
+                    <select id="mole" name="odor">
+                      <option value="" disabled selected>Select Odor</option>
+                      <option value="0.">Almond</option>
+                        <option value="0.375">Anise</option>
+                        <option value="0.125">Creosote</option>
+                        <option value="1.">Fishy</option>
+                        <option value="0.25">Foul</option>
+                        <option value="0.5">Musty</option>
+                        <option value="0.625">None</option>
+                        <option value="0.75">Pungent</option>
+                        <option value="0.875">Spicy</option>
+                    </select>
+                    <label for="mole">Select Odor</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="mo" name="gill_attachment">
+                      <option value="" disabled selected>Select Gill Attachment</option>
+                      <option value="1.">Attached</option>
+                        <option value="0.">Free</option>
+                    </select>
+                    <label for="mo">Select Gill Attachment</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="mol" name="gill_spacing">
+                      <option value="" disabled selected>Select Gill Spacing</option>
+                      <option value="0.">Closed</option>
+                        <option value="1.">Crowded</option>
+                    </select>
+                    <label for="mol">Select Gill Spacing </label>
+                  </div>
+              </div>
+            </div>
+            <div class="col s12 m4">
+              <div class="card-panel grey lighten-4 grey-text text-darken-4 z-depth-0">
+                    <div class="input-field">
+                    <select id="cole" name="gill_size">
+                      <option value="" disabled selected>Select Gill Size</option>
+                      <option value="0.">Broad</option>
+                        <option value="1.">Narrow</option>
+                    </select>
+                    <label for="cole">Select Gill Size</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="col" name="gill_color">
+                      <option value="" disabled selected>Select Gill Color</option>
+                      <option value="0.36363636">Black</option>
+                        <option value="0.45454545">Brown</option>
+                        <option value="0.">Buff</option>
+                        <option value="0.27272727">Chocolate</option>
+                        <option value="0.18181818">Gray</option>
+                        <option value="0.72727273">Green</option>
+                        <option value="0.54545455">Orange</option>
+                        <option value="0.81818182">Purple</option>
+                        <option value="0.63636364">Pink</option>
+                        <option value="0.09090909">Red</option>
+                        <option value="0.90909091">White</option>
+                        <option value="1.">Yellow</option>
+                    </select>
+                    <label for="col">Select Gill Color</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="co" name="stalk_shape">
+                      <option value="" disabled selected>Select Stalk Shape</option>
+                      <option value="1.">Tapering</option>
+                        <option value="0.">Enlarging</option>
+                    </select>
+                    <label for="co">Select Stalk Shape</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="c" name="stalk_root">
+                      <option value="" disabled selected>Select Stalk Root</option>
+                      <option value="0.25">Bul Bous</option>
+                        <option value="0.5">Club</option>
+                        <option value="0.75">Equal</option>
+                        <option value="1.">Rooted</option>
+                        <option value="0.">Missing</option>
+                    </select>
+                    <label for="c">Select Stalk Root</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="tole" name="stalk_surface_above_ring">
+                      <option value="" disabled selected>Select Stalk Surface above Ring</option>
+                      <option value="0.">Fibrous</option>
+                        <option value="1.">Scaly</option>
+                        <option value="0.33333333">Silky</option>
+                        <option value="0.66666667">Smooth</option>
+                    </select>
+                    <label for="tole">Select Stalk Surface above Ring</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="tol" name="stalk_surface_below_ring">
+                      <option value="" disabled selected>Select Stalk Surface Below Ring</option>
+                      <option value="0.">Fibrous</option>
+                        <option value="1.">Scaly</option>
+                        <option value="0.33333333">Silky</option>
+                        <option value="0.66666667">Smooth</option>
+                    </select>
+                    <label for="tol">Select Surface Below Ring</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="to" name="stalk_color_above_ring">
+                      <option value="" disabled selected>Select Color above Ring</option>
+                      <option value="0.5">Brown</option>
+                        <option value="0.">Buff</option>
+                        <option value="0.125">Cinnamon</option>
+                        <option value="0.375">Gray</option>
+                        <option value="0.625">Orange</option>
+                        <option value="0.75">Pink</option>
+                        <option value="0.25">Red</option>
+                        <option value="0.875">White</option>
+                        <option value="1.">Yellow</option>
+                    </select>
+                    <label for="to">Select Color above Ring</label>
+                  </div>
+                 </div>
+                </div>
+            <div class="col s12 m4">
+              <div class="card-panel grey lighten-4 grey-text text-darken-4 z-depth-0">
+                  <div class="input-field">
+                    <select id="sole" name="stalk_color_below_ring">
+                      <option value="" disabled selected>Select Color below Ring</option>
+                      <option value="0.5">Brown</option>
+                        <option value="0.">Buff</option>
+                        <option value="0.125">Cinnamon</option>
+                        <option value="0.375">Gray</option>
+                        <option value="0.625">Orange</option>
+                        <option value="0.75">Pink</option>
+                        <option value="0.25">Red</option>
+                        <option value="0.875">White</option>
+                        <option value="1.">Yellow</option>
+                    </select>
+                    <label for="sole">Select Color below Ring</label>
+                  </div>
+
+                  <div class="input-field">
+                    <select id="so" name="veil_color">
+                      <option value="" disabled selected>Select Vile Color</option>
+                      <option value="0.">Brown</option>
+                        <option value="0.33333333">Orange</option>
+                        <option value="0.66666667">White</option>
+                        <option value="1.">Yellow</option>
+                    </select>
+                    <label for="so">Select Vile Color</label>
+                  </div>
+
+                  <div class="input-field">
+                    <select id="s" name="ring_number">
+                      <option value="" disabled selected>Select Ring Number</option>
+                      <option value="0.">None</option>
+                        <option value="0.5">One</option>
+                        <option value="1.">Two</option>
+                    </select>
+                    <label for="s">Select Ring Number</label>
+                  </div>
+                    <div class="input-field">
+                    <select id="pole" name="ring_type">
+                      <option value="" disabled selected>Select Ring Type</option>
+                        <option value="0.">Evanescent</option>
+                        <option value="0.25">Flaring</option>
+                        <option value="0.5">Large</option>
+                        <option value="0.75">None</option>
+                        <option value="1.">Pendant</option>
+                    </select>
+                    <label for="pole">Select Ring Type</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="pol" name="spore_print_color">
+                        <option value="" disabled selected>Select Print Color</option>
+                      <option value="0.25">Black</option>
+                        <option value="0.375">Brown</option>
+                        <option value="0.">Buff</option>
+                        <option value="0.125">Chocolate</option>
+                        <option value="0.625">Green</option>
+                        <option value="0.5">Orange</option>
+                        <option value="0.75">Purple</option>
+                        <option value="0.875">White</option>
+                        <option value="1.">Yellow</option>
+                    </select>
+                    <label for="pol">Select Print Color</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="po" name="population">
+                      <option value="" disabled selected>Select Population</option>
+                      <option value="0.">Abundant</option>
+                        <option value="0.2">Clustered</option>
+                        <option value="0.4">Numerous</option>
+                        <option value="0.6">Scattered</option>
+                        <option value="0.8">Several</option>
+                        <option value="1.">Solitary</option>
+                    </select>
+                    <label for="po">Select Population</label>
+                  </div>
+                  <div class="input-field">
+                    <select id="p" name="habitat">
+                      <option value="" disabled selected>Select Habitat</option>
+                      <option value="0.16666667">Grasses</option>
+                        <option value="0.33333333">Leaves</option>
+                        <option value="0.5">Meadows</option>
+                        <option value="0.66666667">Paths</option>
+                        <option value="0.83333333">Urban</option>
+                        <option value="1.">Waste</option>
+                        <option value="0.">Woods</option>
+                    </select>
+                    <label for="p">Select Habitat</label>
+                  </div>
+              </div>
+            </div>
+                  <div class="col s12 m4">
+                  <div class="card-panel grey lighten-4 grey-text text-darken-4 z-depth-0">
+                    <div class="input-field">
+                    <select id="kol" name="model_choice">
+                      <option value="" disabled selected>Select Model</option>
+                      <option value="dsmodel">Decision Tree</option>
+                        <option value="rfmodel">Random Forest</option>
+                        <option value="svmmodel">Support Vector Machine</option>
+                    </select>
+                    <label for="kol">Select Machine Learning Algorithm</label>
+                  </div>
+                <input type="submit" value="Predict" class="btn btn-outline-success">
+                <input type="reset" value="Clear" class="btn btn-outline-secondary">
+                  </div>
+                  </div>
+                </form>
+
+
+
+      </div>
+    </div>
+
+      </section>
+
+
+
+
+      {% endblock%}
+
+      {% block scripts %}
+      {{super()}}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <!-- Compiled and minified JavaScript -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+      <!-- <script type="text/javascript">
+           document.addEventListener('DOMContentLoaded', function() {
+         git var elems = document.querySelectorAll('select');
+          var instances = M.FormSelect.init(elems, options);
+        });
+      </script> -->
+
+      <script>
+          // Or with jQuery
+
+        $(document).ready(function(){
+          $('select').formSelect();
+        });
+      </script>
+
+
+
+      {% endblock %}
