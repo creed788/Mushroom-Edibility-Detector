@@ -1,0 +1,12 @@
+
+# Required Python Libraries:
+
+1. Flask
+2. Numpy
+3. Matplotlib
+4. Seaborn
+5. Pandas
+6. Sklearn
+7. Joblib
+8. Pickle
+9. flask_material
