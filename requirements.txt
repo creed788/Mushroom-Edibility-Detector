@@ -7,6 +7,5 @@ Seaborn
 Pandas
 Sklearn
 Joblib
-Pickle
 flask_material
 gunicorn
